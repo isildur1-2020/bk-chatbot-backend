@@ -5,7 +5,7 @@ const morgan = require("morgan");
 const rootRouter = require("./routers");
 const app = express();
 
-app.set("PORT", process.env.PORT || 3000);
+app.set("PORT", process.env.PORT || 3001);
 
 app.use(cors());
 app.use(morgan("tiny"));

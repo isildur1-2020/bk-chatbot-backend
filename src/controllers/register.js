@@ -2,7 +2,22 @@ const { googleSheets } = require("../auth");
 const moment = require("moment");
 
 const registerController = async (req, res) => {
+  const month = {
+    Enero: 1,
+    Febrero: 2,
+    Marzo: 3,
+    Abril: 4,
+    Mayo: 5,
+    Junio: 6,
+    Julio: 7,
+    Agosto: 8,
+    Septiembre: 9,
+    Octubre: 10,
+    Noviembre: 11,
+    Diciembre: 12,
+  };
   try {
+    const { dateOfBirth } = req.body;
     const googleSheetsSession = googleSheets.getSession();
     const values = [
       moment().format("DD/MM/YYYY HH:mm:ss"),
@@ -20,7 +35,7 @@ const registerController = async (req, res) => {
       req.body.phone,
       req.body.email,
       req.body.gender,
-      req.body.dateOfBirth,
+      `${dateOfBirth.day}/${month[dateOfBirth.month]}/${dateOfBirth.year}`,
       req.body.scholarship,
       req.body.job,
     ];
