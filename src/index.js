@@ -4,7 +4,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const rootRouter = require("./routers");
 const app = express();
-console.log("hello");
+
 app.set("PORT", process.env.PORT || 3001);
 
 app.use(cors());

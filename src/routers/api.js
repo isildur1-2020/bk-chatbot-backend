@@ -1,10 +1,12 @@
 const { Router } = require("express");
 const router = Router();
-const { registerController } = require("../controllers/register");
+const { registerUserController } = require("../controllers/registerUser");
 const { buyActionsController } = require("../controllers/buyActions");
 const { applyForCreditController } = require("../controllers/applyForCredit");
+const { getUserExistsController } = require("../controllers/getUserExists");
 
-router.post("/register", registerController);
+router.get("/userExists/:id", getUserExistsController);
+router.post("/registerUser", registerUserController);
 router.post("/buy-actions", buyActionsController);
 router.post("/apply-for-credit", applyForCreditController);
 
