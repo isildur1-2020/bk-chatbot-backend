@@ -2,12 +2,12 @@ const { googleSheets } = require("../auth");
 
 // Example rangeString
 // "Respuestas de formulario 1!B2:B100000"
-const getColumnInfo = async (rangeString) => {
+const getColumnInfo = async (rangeString, spreadsheetId) => {
   try {
     const googleSheetsSession = googleSheets.getSession();
     const { data } = await googleSheetsSession.spreadsheets.values.get({
       auth: googleSheets.auth,
-      spreadsheetId: process.env.SHEET_ID,
+      spreadsheetId,
       majorDimension: "COLUMNS",
       range: rangeString,
     });
@@ -18,11 +18,7 @@ const getColumnInfo = async (rangeString) => {
     };
   } catch (err) {
     console.log(err);
-    return {
-      err: true,
-      data: null,
-      message: err,
-    };
+    throw new Error(err);
   }
 };
 

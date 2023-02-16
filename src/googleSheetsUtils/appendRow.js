@@ -2,12 +2,12 @@ const { googleSheets } = require("../auth");
 
 // Example rangeString
 // "Respuestas de formulario 1!A1:R1"
-const appendRow = async (rangeString, values) => {
+const appendRow = async (rangeString, values, spreadsheetId) => {
   try {
     const googleSheetsSession = googleSheets.getSession();
     const resp = await googleSheetsSession.spreadsheets.values.append({
       auth: googleSheets.auth,
-      spreadsheetId: process.env.SHEET_ID,
+      spreadsheetId,
       range: rangeString,
       valueInputOption: "USER_ENTERED",
       resource: {
@@ -21,11 +21,7 @@ const appendRow = async (rangeString, values) => {
     };
   } catch (err) {
     console.log(err);
-    return {
-      err: true,
-      data: null,
-      message: err,
-    };
+    throw new Error(err);
   }
 };
 

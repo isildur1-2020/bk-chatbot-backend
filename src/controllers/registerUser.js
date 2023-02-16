@@ -1,5 +1,5 @@
 const moment = require("moment");
-const { bkActions, sheets, months } = require("../utils");
+const { bkActions, sheets, months, sheetsIds } = require("../utils");
 const { appendRow } = require("../googleSheetsUtils/appendRow");
 
 const registerUserController = async (req, res) => {
@@ -26,7 +26,11 @@ const registerUserController = async (req, res) => {
       req.body.job,
     ];
     const query = `${sheets.dataSheet}!A1:R1`;
-    const { err, data, message } = await appendRow(query, values);
+    const { err, data, message } = await appendRow(
+      query,
+      values,
+      sheetsIds.dataSheet
+    );
     return res.status(200).json({
       err,
       data,
@@ -36,6 +40,7 @@ const registerUserController = async (req, res) => {
     console.log(err);
     return res.status(400).json({
       err: true,
+      data: null,
       message: err.message,
     });
   }

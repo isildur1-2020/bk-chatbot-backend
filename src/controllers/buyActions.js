@@ -1,13 +1,14 @@
-const { googleSheets } = require("../auth");
 const moment = require("moment");
+const { bkActions } = require("../utils");
+const { sheetsIds, sheets } = require("../utils");
+const { appendRow } = require("../googleSheetsUtils/appendRow");
 
 const buyActionsController = async (req, res) => {
   try {
-    const googleSheetsSession = googleSheets.getSession();
     const values = [
-      moment().format("DD/MM/YYYY HH:mm:ss"),
+      moment().format("DD/MM/YYYY"),
       req.body.id,
-      "Comprar Acciones",
+      bkActions.buy_actions,
       null,
       null,
       null,
@@ -25,25 +26,18 @@ const buyActionsController = async (req, res) => {
       null,
       req.body.actions,
     ];
-    const resp = await googleSheetsSession.spreadsheets.values.append({
-      auth: googleSheets.auth,
-      spreadsheetId: process.env.SHEET_ID,
-      range: "Respuestas de formulario 1!A1:S1",
-      valueInputOption: "USER_ENTERED",
-      resource: {
-        values: [values],
-      },
-    });
-
+    const query = `${sheets.dataSheet}!A1:S1`;
+    const { data } = await appendRow(query, values, sheetsIds.dataSheet);
     return res.status(200).json({
+      data,
       err: false,
-      message: null,
-      data: resp,
+      message: "Data created successfully",
     });
   } catch (err) {
     console.log(err);
     return res.status(400).json({
       err: true,
+      data: null,
       message: err.message,
     });
   }

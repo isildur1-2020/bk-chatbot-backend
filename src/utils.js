@@ -6,6 +6,12 @@ const scopes = {
 
 const sheets = {
   dataSheet: "Respuestas de formulario 1",
+  resumeSheet: "RESUMEN GENERAL",
+};
+
+const sheetsIds = {
+  dataSheet: "1M57BFXFNgSjmAN3dn_NnANOwNDOBrw0PKKrlgz-nLjo",
+  resumeSheet: "1yLOYsyBHVVVATFrdCxs65I_tvPWTJnCSWqNB1moSLqw",
 };
 
 const pathTo = {
@@ -29,6 +35,8 @@ const months = {
 
 const bkActions = {
   register_as_a_new_partner: "Registrarme como socio",
+  buy_actions: "Comprar Acciones",
+  apply_for_credit: "Solicitar Crédito",
 };
 
-module.exports = { scopes, pathTo, months, bkActions, sheets };
+module.exports = { scopes, pathTo, months, bkActions, sheets, sheetsIds };
