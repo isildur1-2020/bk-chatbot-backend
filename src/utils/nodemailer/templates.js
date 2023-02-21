@@ -1,27 +1,30 @@
-const createGroupTemplate = `
+const createGroupTemplate = (data) => {
+  const { id, phone, country, reason, findOut } = data;
+  return `
     <div>
         <div>
             <strong>Identificación: </strong>
-            <span>${req.body.id}</span>
+            <span>${id}</span>
         </div>
         <div>
             <strong>Teléfono: </strong>
-            <span>${req.body.phone}</span>
+            <span>${phone}</span>
         </div>
         <div>
             <strong>País: </strong>
-            <span>${req.body.country}</span>
+            <span>${country}</span>
         </div>
         <div>
             <strong>Motivo: </strong>
-            <span>${req.body.reason}</span>
+            <span>${reason}</span>
         </div>
         <div>
             <strong>Cómo se enteró: </strong>
-            <span>${req.body.findOut}</span>
+            <span>${findOut}</span>
         </div>
     </div>
 `;
+};
 
 module.exports = {
   createGroupTemplate,

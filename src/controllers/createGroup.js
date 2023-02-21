@@ -25,7 +25,7 @@ const createGroupController = async (req, res) => {
       from: process.env.EMAIL,
       to: process.env.EMAIL_DESTINY,
       subject: "¡ Alguien quiere crear un grupo !",
-      html: createGroupTemplate,
+      html: createGroupTemplate(req.body),
     });
     return res.status(200).json({
       err,
