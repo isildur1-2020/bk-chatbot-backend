@@ -37,6 +37,7 @@ const bkActions = {
   register_as_a_new_partner: "Registrarme como socio",
   buy_actions: "Comprar Acciones",
   apply_for_credit: "Solicitar Crédito",
+  create_group: "Crear un nuevo grupo",
 };
 
 module.exports = { scopes, pathTo, months, bkActions, sheets, sheetsIds };

@@ -10,6 +10,7 @@ const {
 const {
   getUserCreditToApplyController,
 } = require("../controllers/getUserCreditToApply");
+const { createGroupController } = require("../controllers/createGroup");
 
 router.get("/userExists/:id", getUserExistsController);
 router.get("/getUserActionsToBuy/:userId", getUserActionsToBuyController);
@@ -17,5 +18,6 @@ router.get("/getUserCreditToApply/:userId", getUserCreditToApplyController);
 router.post("/registerUser", registerUserController);
 router.post("/buy-actions", buyActionsController);
 router.post("/apply-for-credit", applyForCreditController);
+router.post("/create-group", createGroupController);
 
 module.exports = router;
