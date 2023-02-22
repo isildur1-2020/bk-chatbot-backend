@@ -18,6 +18,6 @@ router.get("/getUserCreditToApply/:userId", getUserCreditToApplyController);
 router.post("/registerUser", registerUserController);
 router.post("/buy-actions", buyActionsController);
 router.post("/apply-for-credit", applyForCreditController);
-router.post("/create-group", createGroupController);
+router.post("/createGroup", createGroupController);
 
 module.exports = router;

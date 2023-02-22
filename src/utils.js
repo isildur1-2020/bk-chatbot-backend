@@ -1,4 +1,7 @@
 const path = require("path");
+const moment = require("moment");
+
+const currentDate = moment().format("DD/MM/YYYY");
 
 const scopes = {
   googlesheets: "https://www.googleapis.com/auth/spreadsheets",
@@ -40,4 +43,12 @@ const bkActions = {
   create_group: "Crear un nuevo grupo",
 };
 
-module.exports = { scopes, pathTo, months, bkActions, sheets, sheetsIds };
+module.exports = {
+  scopes,
+  pathTo,
+  months,
+  bkActions,
+  sheets,
+  sheetsIds,
+  currentDate,
+};

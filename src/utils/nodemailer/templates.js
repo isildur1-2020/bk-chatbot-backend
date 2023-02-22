@@ -1,10 +1,14 @@
 const createGroupTemplate = (data) => {
-  const { id, phone, country, reason, findOut } = data;
+  const { id, name, phone, country, reason, findOut } = data;
   return `
     <div>
         <div>
             <strong>Identificación: </strong>
             <span>${id}</span>
+        </div>
+        <div>
+            <strong>Nombre: </strong>
+            <span>${name}</span>
         </div>
         <div>
             <strong>Teléfono: </strong>
