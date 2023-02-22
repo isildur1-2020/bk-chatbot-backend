@@ -1,37 +1,25 @@
-const moment = require("moment");
-const { bkActions } = require("../utils");
 const { sheetsIds, sheets } = require("../utils");
-const { appendRow } = require("../googleSheetsUtils/appendRow");
+const { bkActions, currentDate } = require("../utils");
+const { appendCustomRow } = require("../googleSheetsUtils/appendCustomRow");
 
 const buyActionsController = async (req, res) => {
   try {
     const values = [
-      moment().format("DD/MM/YYYY"),
+      currentDate,
       req.body.id,
       bkActions.buy_actions,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
+      ...new Array(15).fill(null),
       req.body.actions,
     ];
-    const query = `${sheets.dataSheet}!A1:S1`;
-    const { data } = await appendRow(query, values, sheetsIds.dataSheet);
+    const { message } = await appendCustomRow(
+      sheetsIds.dataSheet,
+      `${sheets.dataSheet}!A1:S1`,
+      values
+    );
     return res.status(200).json({
-      data,
+      message,
       err: false,
-      message: "Data created successfully",
+      data: null,
     });
   } catch (err) {
     console.log(err);

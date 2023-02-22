@@ -39,7 +39,7 @@ const createGroupController = async (req, res) => {
       currentDate,
       id,
       bkActions.create_group,
-      ...new Array(51).fill(null),
+      ...new Array(53).fill(null),
       ...values,
     ];
     const range = `${sheets.dataSheet}!A:BF`;

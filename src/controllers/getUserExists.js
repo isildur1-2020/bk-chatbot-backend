@@ -10,18 +10,16 @@ const getUserExistsController = async (req, res) => {
         data: null,
         message: "id param must be required",
       });
-    const query = `${sheets.dataSheet}!B2:B100000`;
     const { err, data, message } = await getColumnInfo(
-      query,
+      `${sheets.dataSheet}!B2:B1000000`,
       sheetsIds.dataSheet
     );
-    const usersId = data?.values?.[0];
-    const isUserExists = usersId.some((userId) => +userId === +id);
+    const isUserExists = data?.some((userId) => +userId === +id);
     return res.status(200).json({
       err,
+      message,
       data: null,
       isUserExists,
-      message,
     });
   } catch (err) {
     console.log(err);

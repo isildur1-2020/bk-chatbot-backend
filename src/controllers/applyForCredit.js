@@ -1,36 +1,19 @@
-const moment = require("moment");
-const { bkActions, sheets, sheetsIds } = require("../utils");
 const { appendRow } = require("../googleSheetsUtils/appendRow");
+const { bkActions, sheets, sheetsIds, currentDate } = require("../utils");
 
 const applyForCreditController = async (req, res) => {
   try {
     const { id, money, months, toUseTheCredit, purpose } = req.body;
     const values = [
-      moment().format("DD/MM/YYYY"),
+      currentDate,
       id,
       bkActions.apply_for_credit,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
+      ...new Array(16).fill(null),
       money,
       months,
       toUseTheCredit,
       toUseTheCredit === "Inversión en negocios" ? purpose : null,
-      null,
-      null,
+      ...new Array(2).fill(null),
       toUseTheCredit === "Pago de deudas con otros" ? purpose : null,
       toUseTheCredit === "Inversión familiar" ? purpose : null,
       toUseTheCredit === "Gastos médicos" ? purpose : null,

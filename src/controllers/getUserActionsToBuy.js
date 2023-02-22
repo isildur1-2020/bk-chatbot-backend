@@ -10,22 +10,18 @@ const getUserActionsToBuyController = async (req, res) => {
         data: null,
         message: "userId param must be required",
       });
-    const getUsersQuery = `${sheets.resumeSheet}!B3:B100000`;
-    const respGetUsersQuery = await getColumnInfo(
-      getUsersQuery,
+    const userIds = await getColumnInfo(
+      `${sheets.resumeSheet}!B3:B1000000`,
       sheetsIds.resumeSheet
     );
-    const userIds = respGetUsersQuery?.data?.values?.[0];
-    const userIndex = userIds.findIndex((id) => id === userId);
-    const getQuantityOfActionsQuery = `${sheets.resumeSheet}!L${userIndex + 3}`;
-    const respGetQuantityOfActions = await getColumnInfo(
-      getQuantityOfActionsQuery,
+    const userIndex = userIds?.data?.findIndex((id) => id === userId);
+    const { data } = await getColumnInfo(
+      `${sheets.resumeSheet}!L${userIndex + 3}`,
       sheetsIds.resumeSheet
     );
-    const quantityOfActions = respGetQuantityOfActions?.data?.values?.[0]?.[0];
     res.status(200).json({
       err: false,
-      quantityOfActions,
+      quantityOfActions: data?.[0],
       message: "Actions found succesfully",
     });
   } catch (err) {

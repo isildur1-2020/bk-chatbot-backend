@@ -10,22 +10,18 @@ const getUserCreditToApplyController = async (req, res) => {
         data: null,
         message: "userId param must be required",
       });
-    const getUsersQuery = `${sheets.resumeSheet}!B3:B100000`;
-    const respGetUsersQuery = await getColumnInfo(
-      getUsersQuery,
+    const userIds = await getColumnInfo(
+      `${sheets.resumeSheet}!B3:B100000`,
       sheetsIds.resumeSheet
     );
-    const userIds = respGetUsersQuery?.data?.values?.[0];
-    const userIndex = userIds.findIndex((id) => id === userId);
-    const getQuantityOfCreditQuery = `${sheets.resumeSheet}!M${userIndex + 3}`;
-    const respGetQuantityOfCredit = await getColumnInfo(
-      getQuantityOfCreditQuery,
+    const userIndex = userIds?.data?.findIndex((id) => id === userId);
+    const { data } = await getColumnInfo(
+      `${sheets.resumeSheet}!M${userIndex + 3}`,
       sheetsIds.resumeSheet
     );
-    const quantityOfCredit = respGetQuantityOfCredit?.data?.values?.[0]?.[0];
     res.status(200).json({
       err: false,
-      quantityOfCredit,
+      quantityOfCredit: data?.[0],
       message: "Credit found succesfully",
     });
   } catch (err) {
