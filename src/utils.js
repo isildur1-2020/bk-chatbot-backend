@@ -10,6 +10,8 @@ const scopes = {
 const sheets = {
   dataSheet: "Respuestas de formulario 1",
   resumeSheet: "RESUMEN GENERAL",
+  administrators: "ADMINISTRADORES",
+  approveCreditOrActions: "aprobaciones",
 };
 
 const sheetsIds = {
@@ -41,6 +43,7 @@ const bkActions = {
   buy_actions: "Comprar Acciones",
   apply_for_credit: "Solicitar Crédito",
   create_group: "Crear un nuevo grupo",
+  approve_actions: "Aprobar compra de acciones",
 };
 
 module.exports = {

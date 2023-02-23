@@ -10,7 +10,7 @@ const getRowInfo = async (spreadsheetId, range) => {
       majorDimension: "ROWS",
     });
     return {
-      data,
+      data: data?.values?.[0] ?? "N/A",
       err: false,
       message: "ROWS found successfully",
     };
